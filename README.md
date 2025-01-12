@@ -1,6 +1,6 @@
 # Terraform Proxmox Module
 
-![alt text](image.png)
+![alt text](assets/image.png)
 
 [![Terraform](https://img.shields.io/badge/Terraform-v1.x-blue)](https://www.terraform.io) [![Proxmox](https://img.shields.io/badge/Proxmox-Supported-green)](https://www.proxmox.com) [![License](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
 
