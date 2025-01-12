@@ -26,6 +26,16 @@ Este é um módulo Terraform para criar contêineres LXC no Proxmox. Ele abstrai
 
 ## Como Usar 🛠️💻📦
 
+### Use diretamente do Terraform Registry 📦🔍🔗
+
+```hcl
+module "lxc" {
+  source  = "joao-pedro-rdo/lxc/proxmox"
+  version = "1.0.0"
+  # insert the 5 required variables here
+}
+```
+
 ### Passo 1: Clonar o Repositório 🌀📂⚙️
 
 ```bash
