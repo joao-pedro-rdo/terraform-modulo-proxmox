@@ -3,7 +3,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "=3.0.1-rc6"
+      version = ">2.6"
     }
   }
 }
@@ -28,6 +28,10 @@ resource "proxmox_lxc" "containers" {
   # ostype       = "ubuntu"
   start = true
   # nameserver = var.dns
+  tags = var.tag
+  # onboot = false # Ligar no boot
+
+
 
   // Terraform will crash without rootfs defined
   rootfs {
@@ -39,4 +43,8 @@ resource "proxmox_lxc" "containers" {
     bridge = var.bridge
     ip     = var.lxc_containers.ip
   }
+
+
+
+
 }

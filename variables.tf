@@ -91,3 +91,10 @@ variable "dns" {
   type        = string
   default     = null
 }
+
+variable "tag" {
+  description = "Tag para identificar os recursos"
+  type        = string
+  default     = null
+
+}
