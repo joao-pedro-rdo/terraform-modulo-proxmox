@@ -86,7 +86,7 @@ variable "privileged" {
 
 }
 
-variable "dns" {
+variable "nameserver" {
   description = "DNS"
   type        = string
   default     = null
@@ -102,4 +102,11 @@ variable "ssh-keys" {
   description = "Chave SSH"
   type        = list(string)
   default     = []
+  sensitive   = true
+}
+variable "searchdomain" {
+  description = "Domínio de pesquisa"
+  type        = string
+  default     = null
+
 }
