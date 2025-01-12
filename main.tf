@@ -3,7 +3,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = "=3.0.1-rc6"
+      version = "~> 2.9.14"
     }
   }
 }
@@ -17,7 +17,7 @@ resource "proxmox_lxc" "containers" {
   cores        = var.lxc_containers.cores
   memory       = var.lxc_containers.memory
   swap         = var.lxc_containers.swap
-  unprivileged = var.privileged
+  unprivileged = var.unprivileged
   tags         = var.tag
   nameserver   = var.nameserver
   searchdomain = var.searchdomain
@@ -37,7 +37,8 @@ resource "proxmox_lxc" "containers" {
     ip     = var.lxc_containers.ip
   }
 
-
-
-
+  features {
+    fuse    = var.fuse
+    nesting = var.nesting
+  }
 }

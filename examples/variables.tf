@@ -1,3 +1,25 @@
+variable "pm_api_url" {
+  description = "URL da API do Proxmox"
+  type        = string
+}
+
+variable "pm_user" {
+  description = "Usuário para autenticação no Proxmox"
+  type        = string
+}
+
+variable "pm_password" {
+  description = "Senha ou token do usuário"
+  type        = string
+  sensitive   = true
+}
+
+variable "pm_tls_insecure" {
+  description = "Permitir TLS inseguro (apenas para testes)"
+  type        = bool
+  default     = true
+}
+
 variable "target_node" {
   # Se nao for o mesmo nome nao vai funcionar 
   description = "Nome do nó Proxmox onde o container será criad"
@@ -40,58 +62,47 @@ variable "lxc_containers" {
   })
 }
 
+variable "num_containers" {
+  description = "Numberos de containers"
+  type        = number
+  default     = 1
+  validation {
+    condition     = var.num_containers > 0
+    error_message = "O número de containers deve ser maior que zero"
+  }
+
+}
 variable "hostname" {
   description = "Hostname dos containers"
   type        = string
   default     = "lxc-terraform"
 }
 
+variable "ct_unprivileged" {
+  description = "Privilegiado"
+  type        = bool
+  default     = false
 
-variable "nameserver" {
+}
+
+variable "dns" {
   description = "DNS"
   type        = string
   default     = null
 }
-
 variable "tag" {
   description = "Tag para identificar os recursos"
   type        = string
   default     = null
+}
 
-}
-variable "ssh-keys" {
-  description = "Chave SSH"
-  type        = list(string)
-  default     = []
-  sensitive   = true
-}
-variable "searchdomain" {
-  description = "Domínio de pesquisa"
-  type        = string
-  default     = null
-
-}
-variable "unprivileged" {
-  description = "Privilegiado"
-  type        = bool
-  # default     = false
-}
 variable "nesting" {
   description = "Permitir nesting"
   type        = bool
-  # default     = false
-  validation {
-    condition     = (var.unprivileged == true && var.nesting == true) || (var.unprivileged == false && var.nesting == false)
-    error_message = "Nesting não é permitido com privilegiado"
-  }
+  default     = false
 }
 variable "fuse" {
   description = "Permitir fuse"
   type        = bool
   default     = false
-  # TODO verificar se é possivel fazer a validação
-  # validation {
-  #   condition     = var.unprivileged == false && var.fuse == true
-  #   error_message = "Fuse não é permitido com privilegiado"
-  # }
 }
