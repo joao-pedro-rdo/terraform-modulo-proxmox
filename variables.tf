@@ -62,18 +62,32 @@ variable "lxc_containers" {
   })
 }
 
-variable "num_containers" {
-  description = "Numberos de containers"
-  type        = number
-  default     = 1
-  validation {
-    condition     = var.num_containers > 0
-    error_message = "O número de containers deve ser maior que zero"
-  }
+# variable "num_containers" {
+#   description = "Numberos de containers"
+#   type        = number
+#   default     = 1
+#   validation {
+#     condition     = var.num_containers > 0
+#     error_message = "O número de containers deve ser maior que zero"
+#   }
 
-}
+# }
 variable "hostname" {
   description = "Hostname dos containers"
   type        = string
   default     = "lxc-terraform"
+}
+
+variable "privileged" {
+  description = "Privilegiado"
+  type        = bool
+  default     = false
+
+
+}
+
+variable "dns" {
+  description = "DNS"
+  type        = string
+  default     = null
 }

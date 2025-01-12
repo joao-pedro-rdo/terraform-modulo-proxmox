@@ -3,7 +3,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "telmate/proxmox"
-      version = ">2.5"
+      version = "=3.0.1-rc6"
     }
   }
 }
@@ -17,15 +17,19 @@ terraform {
 
 # Criar múltiplos containers LXC dinamicamente
 resource "proxmox_lxc" "containers" {
-  target_node = var.target_node
-  hostname    = var.hostname
-  ostemplate  = var.ostemplate
-  password    = var.lxc_password
-  cores       = var.lxc_containers.cores
-  memory      = var.lxc_containers.memory
-  swap        = var.lxc_containers.swap
+  target_node  = var.target_node
+  hostname     = var.hostname
+  ostemplate   = var.ostemplate
+  password     = var.lxc_password
+  cores        = var.lxc_containers.cores
+  memory       = var.lxc_containers.memory
+  swap         = var.lxc_containers.swap
+  unprivileged = var.privileged
+  # ostype       = "ubuntu"
+  start = true
+  # nameserver = var.dns
 
-
+  // Terraform will crash without rootfs defined
   rootfs {
     storage = var.storage
     size    = var.lxc_containers.disk_size
