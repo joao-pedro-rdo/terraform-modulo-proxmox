@@ -28,11 +28,10 @@ resource "proxmox_lxc" "containers" {
   # ostype       = "ubuntu"
   start = true
   # nameserver = var.dns
-  tags = var.tag
-  # onboot = false # Ligar no boot
+  tags   = var.tag
+  onboot = true # Ligar no boot
 
-
-
+  ssh_public_keys = join("\n", var.ssh-keys)
   // Terraform will crash without rootfs defined
   rootfs {
     storage = var.storage

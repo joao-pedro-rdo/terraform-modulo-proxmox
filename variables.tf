@@ -98,3 +98,8 @@ variable "tag" {
   default     = null
 
 }
+variable "ssh-keys" {
+  description = "Chave SSH"
+  type        = list(string)
+  default     = []
+}
